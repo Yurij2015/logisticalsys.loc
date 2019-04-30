@@ -125,4 +125,27 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    //добавление ролей пользователей
+    public function actionRole()
+    {
+//        $admin = Yii::$app->authManager->createRole('admin');
+//        $admin->description = 'Администратор';
+//        Yii::$app->authManager->add($admin);
+//
+//        $moderator = Yii::$app->authManager->createRole('moderator');
+//        $moderator->description = 'Модератор';
+//        Yii::$app->authManager->add($moderator);
+//
+//        $user = Yii::$app->authManager->createRole('user');
+//        $user->description = 'Пользователь';
+//        Yii::$app->authManager->add($user);
+
+//        $permit = Yii::$app->authManager->createPermission('canAdmin');
+//        $permit->description = 'Право входа в админку';
+//        Yii::$app->authManager->add($permit);
+//
+//        return "Разрешения добавлены";
+    }
+
 }
