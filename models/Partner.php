@@ -51,7 +51,7 @@ class Partner extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'partnertitle' => Yii::t('app', 'Наименование партнера'),
             'agentname' => Yii::t('app', 'ФИО агента'),
-            'passport' => Yii::t('app', 'Серия и номер пасспорта агента'),
+            'passport' => Yii::t('app', 'Серия и номер паспорта агента'),
             'address' => Yii::t('app', 'Адрес контрагента'),
             'city' => Yii::t('app', 'Город'),
             'phone' => Yii::t('app', 'Контактный номер телефона'),
