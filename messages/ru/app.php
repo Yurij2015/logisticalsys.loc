@@ -23,7 +23,7 @@ return [
     'ID' => '',
     'Partners' => 'Контрагенты',
     'Reset' => '',
-    'Save' => '',
+    'Save' => 'Сохранить',
     'Search' => '',
     'The requested page does not exist.' => '',
     'Update' => '',
@@ -31,5 +31,7 @@ return [
     'Home' => 'Главная',
     'About'=> 'О системе',
     'Contact' => 'Контакты',
-    'Login' => 'Вход'
+    'Login' => 'Вход',
+    'Logout' => 'Выход'
+
 ];

@@ -37,6 +37,8 @@ class Partner extends \yii\db\ActiveRecord
             [['address'], 'string', 'max' => 200],
             [['city'], 'string', 'max' => 50],
             [['phone'], 'string', 'max' => 15],
+            [['partnertitle', 'agentname', 'passport', 'address', 'city', 'phone'], 'required'],
+
         ];
     }
 
