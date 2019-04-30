@@ -12,6 +12,13 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            'cache' => 'cache' //Включаем кеширование
+        ],
+        'cache' => [
+            'class' => 'yii\caching\FileCache',  // Подключаем файловое кэширование данных
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'uIA3lsoWtO7V3-l-laxZyfIw0FxW0cX3',
