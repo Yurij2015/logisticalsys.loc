@@ -40,9 +40,11 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => Yii::t('app', 'Home'), 'url' => ['/site/index']],
-            ['label' => Yii::t('app', 'About'), 'url' => ['/site/about']],
-            ['label' => Yii::t('app', 'Contact'), 'url' => ['/site/contact']],
+//            ['label' => Yii::t('app', 'About'), 'url' => ['/site/about']],
+//            ['label' => Yii::t('app', 'Contact'), 'url' => ['/site/contact']],
             ['label' => Yii::t('app', 'Partners'), 'url' => ['/partner/index']],
+            ['label' => Yii::t('app', 'Employees'), 'url' => ['/employee/index']],
+
             Yii::$app->user->isGuest ? (
             ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login']]
             ) : (
