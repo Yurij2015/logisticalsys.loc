@@ -3,17 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Partner;
-use app\models\PartnerSearch;
-use yii\filters\AccessControl;
+use app\models\Storehouse;
+use app\models\StorehouseSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PartnerController implements the CRUD actions for Partner model.
+ * StorehouseController implements the CRUD actions for Storehouse model.
  */
-class PartnerController extends Controller
+class StorehouseController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -21,16 +20,6 @@ class PartnerController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'actions' => ['index', 'create', 'view', 'delete', 'update'],
-                        'allow' => true,
-                        'roles' => ['admin', 'manager'],
-                    ],
-                ],
-            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -41,12 +30,12 @@ class PartnerController extends Controller
     }
 
     /**
-     * Lists all Partner models.
+     * Lists all Storehouse models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PartnerSearch();
+        $searchModel = new StorehouseSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -56,7 +45,7 @@ class PartnerController extends Controller
     }
 
     /**
-     * Displays a single Partner model.
+     * Displays a single Storehouse model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -69,16 +58,16 @@ class PartnerController extends Controller
     }
 
     /**
-     * Creates a new Partner model.
+     * Creates a new Storehouse model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Partner();
+        $model = new Storehouse();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->idstorehouse]);
         }
 
         return $this->render('create', [
@@ -87,7 +76,7 @@ class PartnerController extends Controller
     }
 
     /**
-     * Updates an existing Partner model.
+     * Updates an existing Storehouse model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -98,7 +87,7 @@ class PartnerController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->idstorehouse]);
         }
 
         return $this->render('update', [
@@ -107,7 +96,7 @@ class PartnerController extends Controller
     }
 
     /**
-     * Deletes an existing Partner model.
+     * Deletes an existing Storehouse model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -121,15 +110,15 @@ class PartnerController extends Controller
     }
 
     /**
-     * Finds the Partner model based on its primary key value.
+     * Finds the Storehouse model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Partner the loaded model
+     * @return Storehouse the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Partner::findOne($id)) !== null) {
+        if (($model = Storehouse::findOne($id)) !== null) {
             return $model;
         }
 

@@ -27,7 +27,7 @@ class EmployeeController extends Controller
                     [
                         'actions' => ['index', 'create', 'view', 'delete', 'update'],
                         'allow' => true,
-                        'roles' => ['admin'],
+                        'roles' => ['admin', 'manager'],
                     ],
                 ],
             ],

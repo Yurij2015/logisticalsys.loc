@@ -129,6 +129,22 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Generates email confirmation token
+     */
+    public function generateEmailConfirmToken()
+    {
+        $this->email_confirm_token = Yii::$app->security->generateRandomString();
+    }
+
+    /**
+     * Removes email confirmation token
+     */
+    public function removeEmailConfirmToken()
+    {
+        $this->email_confirm_token = null;
+    }
+
+    /**
      * Generates "remember me" authentication key
      */
     public function generateAuthKey()

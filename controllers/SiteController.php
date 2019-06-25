@@ -64,6 +64,15 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+
+//        $role = Yii::$app->authManager->createRole('admin');
+//        $role->description = 'Администратор';
+//        Yii::$app->authManager->add($role);
+//
+//        $role = Yii::$app->authManager->createRole('manager');
+//        $role->description = 'Менеджер';
+//        Yii::$app->authManager->add($role);
+
         return $this->render('index');
     }
 
@@ -185,4 +194,7 @@ class SiteController extends Controller
             ]
         );
     }
+
+
+
 }

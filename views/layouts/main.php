@@ -44,6 +44,12 @@ AppAsset::register($this);
 //            ['label' => Yii::t('app', 'Contact'), 'url' => ['/site/contact']],
             ['label' => Yii::t('app', 'Partners'), 'url' => ['/partner/index']],
             ['label' => Yii::t('app', 'Employees'), 'url' => ['/employee/index']],
+            ['label' => Yii::t('app', 'Positions'), 'url' => ['/position/index']],
+            ['label' => Yii::t('app', 'Materials'), 'url' => ['/material/index']],
+            ['label' => Yii::t('app', 'Storehouses'), 'url' => ['/storehouse/index']],
+            ['label' => Yii::t('app', 'Units'), 'url' => ['/unit/index']],
+
+
 
             Yii::$app->user->isGuest ? (
             ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login']]

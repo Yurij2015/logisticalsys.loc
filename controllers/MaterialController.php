@@ -3,17 +3,17 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Partner;
-use app\models\PartnerSearch;
+use app\models\Material;
+use app\models\MaterialSerarch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PartnerController implements the CRUD actions for Partner model.
+ * MaterialController implements the CRUD actions for Material model.
  */
-class PartnerController extends Controller
+class MaterialController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -41,12 +41,12 @@ class PartnerController extends Controller
     }
 
     /**
-     * Lists all Partner models.
+     * Lists all Material models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PartnerSearch();
+        $searchModel = new MaterialSerarch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -56,7 +56,7 @@ class PartnerController extends Controller
     }
 
     /**
-     * Displays a single Partner model.
+     * Displays a single Material model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -69,16 +69,16 @@ class PartnerController extends Controller
     }
 
     /**
-     * Creates a new Partner model.
+     * Creates a new Material model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Partner();
+        $model = new Material();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->idmaterial]);
         }
 
         return $this->render('create', [
@@ -87,7 +87,7 @@ class PartnerController extends Controller
     }
 
     /**
-     * Updates an existing Partner model.
+     * Updates an existing Material model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -98,7 +98,7 @@ class PartnerController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->idmaterial]);
         }
 
         return $this->render('update', [
@@ -107,7 +107,7 @@ class PartnerController extends Controller
     }
 
     /**
-     * Deletes an existing Partner model.
+     * Deletes an existing Material model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -121,15 +121,15 @@ class PartnerController extends Controller
     }
 
     /**
-     * Finds the Partner model based on its primary key value.
+     * Finds the Material model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Partner the loaded model
+     * @return Material the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Partner::findOne($id)) !== null) {
+        if (($model = Material::findOne($id)) !== null) {
             return $model;
         }
 

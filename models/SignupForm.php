@@ -2,36 +2,37 @@
 
 namespace app\models;
 
-use Yii;
 use yii\base\Model;
+use Yii;
 
 /**
  * Signup form
  */
 class SignupForm extends Model
 {
-
     public $username;
     public $email;
     public $password;
+    public $verifyCode;
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
-            ['username', 'trim'],
+            ['username', 'filter', 'filter' => 'trim'],
             ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\app\models\User', 'message' => 'This username has already been taken.'],
+            ['username', 'match', 'pattern' => '#^[\w_-]+$#i'],
+            ['username', 'unique', 'targetClass' => User::className(), 'message' => 'This username has already been taken.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
-            ['email', 'trim'],
+
+            ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
             ['email', 'email'],
-            ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\app\models\User', 'message' => 'This email address has already been taken.'],
+            ['email', 'unique', 'targetClass' => User::className(), 'message' => 'This email address has already been taken.'],
+
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
+
+            ['verifyCode', 'captcha', 'captchaAction' => '/user/captcha'],
         ];
     }
 
@@ -42,17 +43,38 @@ class SignupForm extends Model
      */
     public function signup()
     {
+        if ($this->validate()) {
+            $user = new User();
+            $user->username = $this->username;
+            $user->email = $this->email;
+            $user->setPassword($this->password);
+           // $user->status = User::STATUS_WAIT;
+            $user->generateAuthKey();
+           // $user->generateEmailConfirmToken();
 
-        if (!$this->validate()) {
-            return null;
+            if ($user->save()) {
+                Yii::$app->session->setFlash('success', "Вы успешно зарегистрированы на сайте!");
+//                Yii::$app->mailer->compose('@app/mail/emailConfirm', ['user' => $user])
+//                    ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])
+//                    ->setTo($this->email)
+//                    ->setSubject('Email confirmation for ' . Yii::$app->name)
+//                    ->send();
+                return $user;
+            }
         }
 
-        $user = new User();
-        $user->username = $this->username;
-        $user->email = $this->email;
-        $user->setPassword($this->password);
-        $user->generateAuthKey();
-        return $user->save() ? $user : null;
+        return null;
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'username' => Yii::t('db-label', 'username'),
+            'password' => Yii::t('db-label', 'password'),
+            'email' => Yii::t('db-label', 'email'),
+            'verifyCode' => Yii::t('db-label', 'verifyCode'),
+
+        ];
     }
 
 }

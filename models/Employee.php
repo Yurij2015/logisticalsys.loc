@@ -62,7 +62,7 @@ class Employee extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPositionIdposition()
+    public function getPosition()
     {
         return $this->hasOne(Position::className(), ['idposition' => 'position_idposition']);
     }

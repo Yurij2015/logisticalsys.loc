@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Employee */
 
-$this->title = $model->name;
+$this->title = $model->name . " " . $model->secondname;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Employees'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -32,9 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'idemployee',
             'name',
             'secondname',
-            'timestamp',
+//            'timestamp',
             'email:email',
-            'position_idposition',
+            'position.positiontname',
         ],
     ]) ?>
 
