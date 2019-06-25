@@ -5,6 +5,8 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\Employee;
+use kartik\widgets\DatePicker;
+
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Material */
@@ -27,7 +29,16 @@ use app\models\Employee;
         ArrayHelper::map(Storehouse::find()->all(), 'idstorehouse', 'storehouse_name')
     ) ?>
 
-    <?= $form->field($model, 'adoptiondate')->textInput() ?>
+    <?php // $form->field($model, 'adoptiondate')->textInput() ?>
+
+    <?= $form->field($model, 'order_date_fmt')->widget(DatePicker::class,[
+        'options' => ['placeholder' => \Yii::t('app','Выберите дату ...')],
+        'pluginOptions' => [
+            'format' => 'yyyy-mm-dd',
+            'autoclose' => true,
+            'orientation' => "bottom",
+        ]
+    ]) ?>
 
     <?php // $form->field($model, 'responsible_person')->dropDownList(
     //ArrayHelper::map(Employee::find()->all(), 'idemployee', 'secondname' )

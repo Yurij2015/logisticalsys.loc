@@ -35,8 +35,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'notice',
             'storehouse.storehouse_name',
             'adoptiondate',
-            'person.name',
-            'person.secondname',
+//            'person.name',
+//            'person.secondname',
+
+            [
+                'attribute' => 'responsible_person',
+                'label' => 'Отвественный',
+                'value' => function ($model) {
+                    return $model->person->secondname . " " . $model->person->name;
+                },
+            ],
+
+
             'material_name',
         ],
     ]) ?>

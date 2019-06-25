@@ -39,6 +39,7 @@ class Material extends \yii\db\ActiveRecord
             [['price'], 'number'],
             [['storehouse_idstorehouse', 'responsible_person'], 'required'],
             [['adoptiondate'], 'safe'],
+            [['order_date_fmt'], 'date', 'format'=>'php:Y-m-d'],
             [['notice'], 'string', 'max' => 255],
             [['material_name'], 'string', 'max' => 60],
             [['responsible_person'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['responsible_person' => 'idemployee']],
@@ -60,6 +61,8 @@ class Material extends \yii\db\ActiveRecord
             'adoptiondate' => Yii::t('app', 'Adoptiondate'),
             'responsible_person' => Yii::t('app', 'Responsible Person'),
             'material_name' => Yii::t('app', 'Material Name'),
+            'order_date_fmt' => Yii::t('app', 'Order Date Fmt'),
+
         ];
     }
 
@@ -78,4 +81,13 @@ class Material extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Storehouse::className(), ['idstorehouse' => 'storehouse_idstorehouse']);
     }
+
+    public function getOrder_date_fmt() {
+        return substr($this->adoptiondate,0,10);
+    }
+
+    public function setOrder_date_fmt($value) {
+        $this->adoptiondate = $value;
+    }
+
 }
