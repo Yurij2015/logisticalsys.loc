@@ -5,7 +5,6 @@ namespace app\controllers;
 use Yii;
 use app\models\Material;
 use app\models\MaterialSerarch;
-use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -21,16 +20,6 @@ class MaterialController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'actions' => ['index', 'create', 'view', 'delete', 'update'],
-                        'allow' => true,
-                        'roles' => ['admin', 'manager'],
-                    ],
-                ],
-            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

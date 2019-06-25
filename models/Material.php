@@ -14,6 +14,7 @@ use Yii;
  * @property int $storehouse_idstorehouse
  * @property string $adoptiondate
  * @property int $responsible_person
+ * @property string $material_name
  *
  * @property Employee $responsiblePerson
  * @property Storehouse $storehouseIdstorehouse
@@ -39,8 +40,9 @@ class Material extends \yii\db\ActiveRecord
             [['storehouse_idstorehouse', 'responsible_person'], 'required'],
             [['adoptiondate'], 'safe'],
             [['notice'], 'string', 'max' => 255],
+            [['material_name'], 'string', 'max' => 60],
             [['responsible_person'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['responsible_person' => 'idemployee']],
-            [['storehouse_idstorehouse'], 'exist', 'skipOnError' => true, 'targetClass' => Storehouse::className(), 'targetAttribute' => ['storehouse_idstorehouse' => 'idstorehouse,']],
+            [['storehouse_idstorehouse'], 'exist', 'skipOnError' => true, 'targetClass' => Storehouse::className(), 'targetAttribute' => ['storehouse_idstorehouse' => 'idstorehouse']],
         ];
     }
 
@@ -57,13 +59,14 @@ class Material extends \yii\db\ActiveRecord
             'storehouse_idstorehouse' => Yii::t('app', 'Storehouse Idstorehouse'),
             'adoptiondate' => Yii::t('app', 'Adoptiondate'),
             'responsible_person' => Yii::t('app', 'Responsible Person'),
+            'material_name' => Yii::t('app', 'Material Name'),
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getResponsiblePerson()
+    public function getPerson()
     {
         return $this->hasOne(Employee::className(), ['idemployee' => 'responsible_person']);
     }
@@ -71,8 +74,8 @@ class Material extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getStorehouseIdstorehouse()
+    public function getStorehouse()
     {
-        return $this->hasOne(Storehouse::className(), ['idstorehouse,' => 'storehouse_idstorehouse']);
+        return $this->hasOne(Storehouse::className(), ['idstorehouse' => 'storehouse_idstorehouse']);
     }
 }

@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Storehouse */
 
-$this->title = $model->idstorehouse;
+$this->title = $model->storehouse_name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Storehouses'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'idstorehouse',
+//            'idstorehouse',
             'storehouse_name',
             'description',
             'address',

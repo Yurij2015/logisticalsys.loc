@@ -25,14 +25,23 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'idmaterial',
+            'material_name',
+            //'idmaterial',
             'count',
             'price',
             'notice',
-            'storehouse_idstorehouse',
+            'storehouse.storehouse_name',
             'adoptiondate',
-            'responsible_person',
+//            'responsible_person',
+
+            [
+                'attribute' => 'responsible_person',
+                'label' => 'Отвественный',
+                'value' => function ($model) {
+                    return $model->person->secondname . " " . $model->person->name;
+                },
+            ],
+
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

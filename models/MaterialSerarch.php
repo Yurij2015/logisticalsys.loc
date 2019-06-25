@@ -19,7 +19,7 @@ class MaterialSerarch extends Material
         return [
             [['idmaterial', 'count', 'storehouse_idstorehouse', 'responsible_person'], 'integer'],
             [['price'], 'number'],
-            [['notice', 'adoptiondate'], 'safe'],
+            [['notice', 'adoptiondate', 'material_name'], 'safe'],
         ];
     }
 
@@ -67,7 +67,8 @@ class MaterialSerarch extends Material
             'responsible_person' => $this->responsible_person,
         ]);
 
-        $query->andFilterWhere(['like', 'notice', $this->notice]);
+        $query->andFilterWhere(['like', 'notice', $this->notice])
+            ->andFilterWhere(['like', 'material_name', $this->material_name]);
 
         return $dataProvider;
     }
